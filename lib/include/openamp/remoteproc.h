@@ -15,6 +15,7 @@
 #include <metal/io.h>
 #include <metal/mutex.h>
 #include <metal/compiler.h>
+#include <metal/sys.h>
 
 #if defined __cplusplus
 extern "C" {
