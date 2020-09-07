@@ -15,6 +15,13 @@
 
 #include "rpmsg_internal.h"
 
+/* For firmware code only */
+#define WAIT_1S(timeout)                                                       \
+  timeout = time(NULL) + 1;                                                    \
+  while (timeout > time(NULL))                                                 \
+    ;
+
+
 #define RPMSG_NUM_VRINGS                        2
 
 /* Total tick count for 15secs - 1usec tick. */
@@ -287,6 +294,9 @@ static int rpmsg_virtio_send_offchannel_raw(struct rpmsg_device *rdev,
 	uint32_t buff_len;
 	int status;
 	struct metal_io_region *io;
+#if 0
+	time_t timeout;
+#endif
 
 	/* Get the associated remote device for channel. */
 	rvdev = metal_container_of(rdev, struct rpmsg_virtio_device, rdev);
@@ -320,6 +330,9 @@ static int rpmsg_virtio_send_offchannel_raw(struct rpmsg_device *rdev,
 		if (avail_size != 0)
 			return RPMSG_ERR_BUFF_SIZE;
 		metal_sleep_usec(RPMSG_TICKS_PER_INTERVAL);
+#if 0
+		WAIT_1S(timeout);
+#endif
 		tick_count--;
 	}
 	if (!buffer)
