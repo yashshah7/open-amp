@@ -10,16 +10,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <metal/sys.h>
-#include <metal/shmem.h>
-#include <metal/device.h>
-#include <metal/io.h>
-
 
 int init_system()
 {
+	printf("YS: %s %d\r\n", __func__, __LINE__);
 	struct metal_init_params metal_param = METAL_INIT_DEFAULTS;
 
-	metal_param.log_level = LOG_DEBUG;
 	metal_init_2(&metal_param);
 
 	return 0;
@@ -27,5 +23,5 @@ int init_system()
 
 void cleanup_system()
 {
-	metal_finish();
+//	metal_finish();
 }

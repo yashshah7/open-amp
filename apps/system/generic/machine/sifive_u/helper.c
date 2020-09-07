@@ -19,7 +19,7 @@ int init_system(void)
 	struct metal_init_params metal_param = METAL_INIT_DEFAULTS;
 
 	/* Low level abstraction layer for openamp initialization */
-	metal_init(&metal_param);
+	metal_init_2(&metal_param);
 
 	return ret;
 }
